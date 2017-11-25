@@ -1,50 +1,52 @@
 #include <stdio.h>
-#define MAXCHAR 1000;
+#include <string.h>
+#define MAXCHAR 1000
 int main()
 {
 	FILE *entrada, *saida;
 	char *result;
-	char Linha[MAXCHAR]
-	int contador, i;
-	Linha[0] = \0;
+	char Linha[MAXCHAR];
+	int contador;
+	int i;
+	Linha[0] = '\0';
 	entrada = fopen("Entrada.txt", "rt");
 	saida = fopen("EntradaCerta.txt", "wt");
 	
 	if(entrada == NULL || saida ==NULL)
 	{
 		printf("Erro ao abrir o arquivo\n");
+		return 0;
 	}
-	
+	printf("Abriu o arquivo com sucesso\n");
+	int cont = 0;
 	while(!feof(entrada))
 	{
 		result = fgets(Linha, MAXCHAR, entrada);
+		puts(Linha);
+		int tamanho = strlen(Linha);
+		cont++;
+		printf("pegou a linha %d\n", cont);
 		if(result)
 		{
 			i= 0;
 			contador = 0;
-			while(Linha[i]!=\0)//enquanto nao chego no final da linha
+			while(i < tamanho)//enquanto nao chego no final da linha
 			{
-				if(Linha[i] >= '0' && Linha[i] <= '9')//se eh um numero ainda estou no mesmo elemento
+				
+				printf("char=%c", Linha[i]);
+				
+				if(Linha[i] == ' ' || Linha[i] == '	')
 				{
-					i++;
-					continue;
+					contador++;
 				}
-				if(Linha[i] == '.')//se eh um ponto tbm estou no mesmo elemento
-				{
-					i++;
-					continue;
-				}
-				while(Linha[i]==' ' || Linha[i]=='	')//se eh um espaço eh pq estou trocando de elemento
-				{
-					i++;
-				}
-				if(Linha[i] >= '0' && Linha[i] <= '9')//quando atinjo o numero adiciono um ao numero de elementos
-				{
-					cont++;
-				}
+				i++;
+				//puts("OI");
+				//putchar(Linha[i]);			
 			}
-			if(cont == 3)
+			puts("SAIU");
+			if(contador == 2)
 			{
+				puts("Saiu da linha agora so ler a proxima");
 				fputs(Linha, saida);
 			}
 		}
