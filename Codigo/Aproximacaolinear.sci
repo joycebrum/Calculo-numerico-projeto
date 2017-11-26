@@ -30,7 +30,7 @@ function[ret, erro] = AproximacaoLinear()//tentar achar uma relacao entre o nive
     deff('z=f(x,y)','z=a*x+b*y+c')
     x=0:0.2:100 ;y = x ;
     clf() ;fplot3d(x,y,f,alpha=5,theta=31)
-    erro = ErroLinear(A, x, b);
+    erro = Erro(A, ret, b);
 endfunction
 
 function[nota] = preveNotaLinear(ponto, y)//recebe um ponto do tipo (nivel socio-economico, taxa de aprovação) e o vetor retornado em Aproximacao Linear e retonar a Nota possivel
@@ -43,7 +43,7 @@ function[nota] = preveNotaLinear(ponto, y)//recebe um ponto do tipo (nivel socio
     end
 endfunction
 
-function[erro] = ErroLinear(A,x ,b)
+function[erro] = Erro(A,x ,b)
     erro = norm((A*x) - b)//verificar
 endfunction
 
