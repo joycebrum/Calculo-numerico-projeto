@@ -1,14 +1,6 @@
-//Como o nivel socio esconomico era dado apenas como muito alto, alto, medio alto etc coloquei porcentagens associadas a cada numero
-//Muito Alto 100
-//Alto 83.3333333333
-//Medio Alto 66.6666666666
-//Medio 50
-//Medio Baixo 33.3333333333
-//Baixo 16.6666666666
-//Muito Baixo 0
-function[ret, erro] = AproximacaoLinear()//tentar achar uma relacao entre o nivel socio economico de uma escola e sua taxa de aprovacao( passar alunos direto eh uma boa ideia?)
-    //z = ax + by + c x=nivel y=resenca z=nota
-    T = Entrada();
+function[ret, erro] = AproximacaoLinear()//relacao linear da nota com a taxa e o nivel usando minimos quadrados
+    //z = ax + by + c x=nivel y=taxa z=nota
+    T = Entrada();//recebe a matriz com todos os pontos
     N = size(T)
     n = N(1,1)//numero de linhas da matriz T
     A = zeros(n,3)
@@ -22,8 +14,8 @@ function[ret, erro] = AproximacaoLinear()//tentar achar uma relacao entre o nive
     end
     At = A'*A
     bt = A'*b
-    ret = At\bt
-    a = ret(1,1)
+    ret = At\bt//resolve o sistema linear
+    a = ret(1,1)//pega os valores dos coeficientes para montar a funcao
     b = ret(2,1)
     c = ret(3,1)
     //desenhar a funcao
