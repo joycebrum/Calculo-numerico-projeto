@@ -22,13 +22,16 @@ int main()
 	{
 		result = fgets(Linha, MAXCHAR, entrada);
 		int tamanho = strlen(Linha);
+		puts(Linha);
+		printf("%d\n", tamanho);
 		if(result)
 		{
 			i= 0;
 			contador = 1;
 			while(i < tamanho)//enquanto nao chego no final da linha
 			{
-				if(Linha[i] >= '0' && Linha[i] <= 9)//numero
+				printf("%d %c\n", i, Linha[i]);
+				if(Linha[i] >= '0' && Linha[i] <= '9')//numero
 				{
 					i++;
 					continue;
@@ -38,17 +41,21 @@ int main()
 					i++;
 					continue;
 				}
-				while(Lista[i] == ' ' || Lista[i]=='	')
+				while(Linha[i] == ' ' || Linha[i]=='	')
 				{
+					puts("oi");
 					i++;
 				}
-				if(Linha[i] >= '0' && Linha[i] <= 9)//numero
+				printf("char antes do contador++ = %c\n",Linha[i]);
+				if(Linha[i] >= '0' && Linha[i] <= '9')//numero
 				{
-					i++;
+					puts("tchau");
 					contador++;
-				}		
+				}
+				i++;		
 			}
 			puts("SAIU");
+			printf("contador = %d\n", contador);
 			if(contador == 3)
 			{
 				puts("ESCREVE NO ARQUIVO");
